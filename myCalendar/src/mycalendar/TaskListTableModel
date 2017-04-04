@@ -1,0 +1,49 @@
+package mycalendar;
+
+import javax.swing.table.*;
+import javax.swing.event.*;
+import java.util.*;
+
+/**
+ *
+ * @author Steven DeAugustine
+ */
+public class TaskListTableModel extends AbstractTableModel {
+    private static String[] columnNames = {"Task", "Description"};
+    private ArrayList<Task> taskTableData;
+    private TaskList tlist = null;
+    
+    public TaskListTableModel(ArrayList<Task> theTaskTableData){
+        this.taskTableData = theTaskTableData;
+    }    
+    
+    public int getColumnCount() {
+        return columnNames.length;
+    }
+     
+    public int getRowCount() {
+        return taskTableData.size();
+    }
+    
+    public String getColumnName(int col) {
+        return columnNames[col];
+    }
+    
+    public Object getValueAt(int row, int col) {
+        Object objectToReturn = new Object();
+        switch(col){
+            case 0: objectToReturn = taskTableData.get(row).getTask();break;
+            case 1: objectToReturn = taskTableData.get(row).getDescription();break;
+        }
+        return objectToReturn;
+    }
+    
+    public Class getColumnClass(int c) {
+        return getValueAt(0, c).getClass();
+    }
+    
+    public TaskList getTList(TaskList newTList){
+        this.tlist = newTList;
+        return this.tlist;
+    }
+}
