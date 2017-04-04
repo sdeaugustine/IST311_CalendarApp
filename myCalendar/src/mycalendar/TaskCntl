@@ -1,0 +1,37 @@
+package mycalendar;
+
+/**
+ *
+ * @author Steven DeAugustine
+ */
+public class TaskCntl {
+    private TaskUI theTaskUI = null;
+    private MainMenuUI theMainMenuUI = null;
+    private TaskListTableModel theTaskListTableModel;
+    
+    public TaskCntl(){
+        theTaskUI = new TaskUI(this);
+        theTaskUI.setLocationRelativeTo(null);
+        theTaskUI.setVisible(true);
+    }
+    
+    
+   public void getMediaCntl(){
+       theTaskUI.setVisible(false);
+       NavigationCntl theNavigationCntl = new NavigationCntl();
+   }
+   
+   public void getTaskCntl(){
+        if(theTaskUI == null){
+            theTaskUI = new TaskUI(this);
+            theTaskUI.setLocationRelativeTo(null);
+            theTaskUI.setVisible(true);
+        }else{
+            theTaskUI.setVisible(true);
+        }
+    }
+   
+   public TaskListTableModel getTaskListTableModel(){
+       return theTaskListTableModel;
+   }
+}
